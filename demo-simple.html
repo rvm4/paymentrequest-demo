@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Simple request with no shipping</title>
-  <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css">
+  <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/vs.min.css">
   <style>
     #script-display { padding-left: 40px; position: relative; }
@@ -13,12 +13,29 @@
   function go() {
     var request = new PaymentRequest(
       [{
-        supportedMethods:['urn:payment:visa','urn:payment:mc','urn:payment:amex']
+        supportedMethods:['visa-tokenized'],
+        data: {
+          fb_app_key: 'aoeuhaoeunaoeud',
+        }
       }],
       {
+        displayItems: [
+          {
+            label: "Item 1",
+            amount: { currency: "USD", value : "20.00" },
+          },
+          {
+            label: "Item 2",
+            amount: { currency: "USD", value : "25.00" },
+          },
+          {
+            label: "Sales Tax",
+            amount: { currency: "USD", value : "5.00" },
+          }
+        ],
         total: {
             label: "Total due",
-            amount: { currencyCode: "USD", value: "60.00" }, // US$60.00
+            amount: { currencyCode: "USD", value: "60.00" },
         }
       }
     );
@@ -26,6 +43,7 @@
     request.show()
       .then(function(response) {
         // process transaction response here
+        console.log(response);
         return response.complete(true);
       })
       .then(function() {

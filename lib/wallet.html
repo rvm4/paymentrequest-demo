@@ -3,7 +3,7 @@
 <head>
 <title>Demo Wallet</title>
 <script src="paymentrequest-wallethelper.js"></script>
-<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css">
+<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css">
 <style>
 .flexcenter {
   display:flex;
@@ -19,8 +19,8 @@
     overflow-y: auto;
 }
 </style>
-<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
-<script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
 
 <script>
 "use strict";
@@ -30,7 +30,7 @@ helper.oninit = init;
 helper.onupdate = update;
 helper.onupdating = updating;
 
-var acceptableMethods = ['urn:payment:visa','urn:payment:mc'];
+var acceptableMethods = ['visa-tokenized', 'visa'];
 var acceptedPurchase = false;
 var addressSelected = false;
 var shippingSelected = false;
@@ -106,7 +106,10 @@ function buy() {
   acceptedPurchase = true;
   helper.acceptPayment({
     methodName: acceptableMethods[selectedPaymentApp-1],
-    data: {}
+    details: {
+      'token': 1234123412341234,
+      'cryptogram': 'aodeuoa8o76u6a8oe5uo',
+    }
   });
 }
 
@@ -225,14 +228,14 @@ function shippingOptionChange() {
           <ul class="dropdown-menu" aria-labelledby="cardDropdown">
             <li><a href="#" id="card1" onclick="paymentAppChange(1)">
               <div class="flexcenter">
-                <img src="card1.png" width="120" alt="Credit card from Secure Bank">
-                <div style="padding:5px;text-align: left;"><strong>Mr Jack Smith</strong><br>6825 Amber Moor<br>Illinoistown<br>WA 98940</div>
+                <img src="fb.png" width="120" alt="Credit card from Best Bank">
+                <div style="padding:5px;text-align: left;">Pay with Facebook</div>
               </div>
             </a></li>
             <li><a href="#" id="card2" onclick="paymentAppChange(2)">
               <div class="flexcenter">
-                <img src="card2.png" width="120" alt="Credit card from Best Bank">
-                <div style="padding:5px;text-align: left;"><strong>Mr Jack Smith</strong><br>491 Stony Gate Grove<br>Hazard<br>WA 98749</div>
+                <img src="card1.png" width="120" alt="Credit card from Secure Bank">
+                <div style="padding:5px;text-align: left;">Pay With Secure Card</div>
               </div>
             </a></li>
           </ul>
@@ -286,7 +289,7 @@ function shippingOptionChange() {
       <div class="modal-footer">
         <div style="float:left;" id="statusMessage"></div>
         <button type="button" id="cancelButton" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="submit" id="buyButton" class="btn btn-primary" onclick="buy()" disabled="disabled">Authorise</button>
+        <button type="submit" id="buyButton" class="btn btn-primary" onclick="buy()" disabled="disabled">Authorize</button>
       </div>
     </div>
   </div>
