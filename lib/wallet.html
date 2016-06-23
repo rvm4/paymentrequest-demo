@@ -271,7 +271,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
         sURLVariables = sPageURL.split('&'),
         sParameterName,
         i;
-console.log(sPageURL);
+
     for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
 
@@ -290,7 +290,7 @@ console.log(sPageURL);
 	if (server) {
 		js.src = 'https://static.' + server + '.facebook.com/assets.php/en_US/all.js';
 	} else {
-		js.src = 'https://static.rvm4-www2.sb.facebook.net/en_US/sdk.js';
+		js.src = 'https://static.psaylor.sb.facebook.net/en_US/sdk.js';
 	}
   console.log(js.src);
 	fjs.parentNode.insertBefore(js, fjs);
