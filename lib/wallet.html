@@ -111,16 +111,12 @@ function buy() {
   FB.pay(function(response) {
     console.log('pay callback');
     console.log(response);
+    // then put details in this blob
+    helper.acceptPayment({
+      methodName: acceptableMethods[selectedPaymentApp-1],
+      details: response,
+    });
   }, {amount: amount, currency: 'USD', merchant_public_key: 'key'});
-
-  // then put details in this blob
-  helper.acceptPayment({
-    methodName: acceptableMethods[selectedPaymentApp-1],
-    details: {
-      'token': 1234123412341234,
-      'cryptogram': 'aodeuoa8o76u6a8oe5uo',
-    }
-  });
 }
 
 function updateBuyButton() {
