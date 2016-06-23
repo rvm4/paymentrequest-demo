@@ -242,7 +242,7 @@ function checkLoginState() {
 
 window.fbAsyncInit = function() {
 	FB.init({
-		appId      : '205422149817578',
+		appId      : '902257993216375',  // '205422149817578',
 		cookie     : true,  // enable cookies to allow the server to access
 												// the session
 		xfbml      : true,  // parse social plugins on this page
@@ -290,7 +290,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 	if (server) {
 		js.src = 'https://static.' + server + '.facebook.com/assets.php/en_US/all.js';
 	} else {
-		js.src = 'https://static.psaylor.sb.facebook.net/en_US/sdk.js';
+		js.src = 'https://static.psaylor.sb.facebook.com/assets.php/en_US/all.js';
 	}
   console.log(js.src);
 	fjs.parentNode.insertBefore(js, fjs);
